@@ -1,19 +1,20 @@
 import { useEffect } from 'react'
-import './App.css'
-const tg = window.Telegram.WebApp
+import './styles/App.css'
+import useTelegram from './hooks/useTelegram'
+import Header from './components/Header'
 
 export default function App() {
+	const { tg, onToggleButton } = useTelegram()
+
 	useEffect(() => {
 		tg.ready()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
-
-	function onClose(params) {
-		tg.close()
-	}
 
 	return (
 		<div>
-			Works <button onClick={onClose}>Close</button>
+			<Header />
+			<button onClick={onToggleButton}>Toggle</button>
 		</div>
 	)
 }
