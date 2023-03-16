@@ -16,15 +16,14 @@ export default function Form() {
 
 	useEffect(() => {
 		tg.onEvent('mainButtonClicked', onSendData)
+
 		return () => {
 			tg.offEvent('mainButtonClicked', onSendData)
 		}
 	}, [onSendData])
 
 	useEffect(() => {
-		tg.MainButton.setParams({
-			text: 'Send data'
-		})
+		tg.MainButton.setParams({ text: 'Send data' })
 	}, [])
 
 	useEffect(() => {
@@ -35,15 +34,15 @@ export default function Form() {
 		}
 	}, [country, street])
 
-	const onChangeCountry = e => {
+	function onChangeCountry(e) {
 		setCountry(e.target.value)
 	}
 
-	const onChangeStreet = e => {
+	function onChangeStreet(e) {
 		setStreet(e.target.value)
 	}
 
-	const onChangeSubject = e => {
+	function onChangeSubject(e) {
 		setSubject(e.target.value)
 	}
 
