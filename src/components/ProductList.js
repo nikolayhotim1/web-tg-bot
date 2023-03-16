@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from 'react'
 import '../styles/ProductList.css'
 import ProductItem from './ProductItem'
@@ -39,7 +38,7 @@ export default function ProductList() {
 			},
 			body: JSON.stringify(data)
 		})
-	}, [addedItems])
+	}, [addedItems, queryId])
 
 	useEffect(() => {
 		tg.onEvent('mainButtonClicked', onSendData)
@@ -47,6 +46,7 @@ export default function ProductList() {
 		return () => {
 			tg.offEvent('mainButtonClicked', onSendData)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [onSendData])
 
 	function onAdd(product) {
@@ -65,7 +65,7 @@ export default function ProductList() {
 			tg.MainButton.hide()
 		} else {
 			tg.MainButton.show()
-			tg.MainButton.setParams({ text: `Buy ${getTotalPrice(newItems)}` })
+			tg.MainButton.setParams({ text: `Buy ${getTotalPrice(newItems)}$` })
 		}
 	}
 
